@@ -16,7 +16,7 @@ RUN groupadd --gid 1000 node \
 USER node
 
 ENV HOME=/home/node
-ARG APP_HOME=/home/node/srv
+ARG APP_HOME=/home/node
 WORKDIR $APP_HOME
 
 RUN git clone --depth 1 https://github.com/alvarcarto/url-to-pdf-api . \
