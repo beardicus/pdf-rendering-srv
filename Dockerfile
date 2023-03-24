@@ -13,13 +13,14 @@ RUN apt update -y \
 RUN groupadd --gid 1000 node \
   && useradd --uid 1000 --gid node --shell /bin/bash --create-home node
 
+RUN mkdir -p /home/node/srv
+RUN chown node.node /home/node/srv
+
 USER node
 
 ENV HOME=/home/node
 ARG APP_HOME=/home/node/srv
 WORKDIR $APP_HOME
-
-RUN mkdir -p $APP_HOME
 
 RUN git clone --depth 1 https://github.com/alvarcarto/url-to-pdf-api . \
   && npm install --only=production
